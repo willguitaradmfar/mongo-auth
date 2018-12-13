@@ -8,8 +8,8 @@ ADD configMongo.sh /configMongo.sh
 RUN chmod +x /run.sh
 RUN chmod +x /configMongo.sh
 
-ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 27017
 
-CMD ["/run.sh"]
+ENTRYPOINT ["/bin/bash", "/run.sh"]
+
