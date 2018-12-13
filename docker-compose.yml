@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  mongo:
+    container_name: mongo-dev
+    image: mongo-ruis
+    restart: always
+    environment:
+      MONGODB_USER: "dev"
+      MONGODB_PASS: "nKY7gXoU8DBvogOA"
+      CREATE_DATABASES: "mirror;dev;fast;furious;208"
+    ports:
+      - 27018:27017
