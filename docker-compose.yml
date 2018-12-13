@@ -1,8 +1,8 @@
 version: "3.4"
 services:
   mongo:
-    container_name: renatoruis/mongo-auth
-    image: mongo-ruis
+    container_name: mongo-auth
+    image: renatoruis/mongo-auth
     restart: always
     environment:
       MONGODB_USER: "userdb"
