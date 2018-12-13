@@ -1,12 +1,12 @@
 version: "3.4"
 services:
   mongo:
-    container_name: mongo-dev
+    container_name: renatoruis/mongo-auth
     image: mongo-ruis
     restart: always
     environment:
-      MONGODB_USER: "dev"
-      MONGODB_PASS: "nKY7gXoU8DBvogOA"
+      MONGODB_USER: "userdb"
+      MONGODB_PASS: "passdb"
       CREATE_DATABASES: "mirror;dev;fast;furious;208"
     ports:
-      - 27018:27017
+      - 27017:27017
