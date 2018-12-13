@@ -11,5 +11,5 @@ RUN chmod +x /configMongo.sh
 
 EXPOSE 27017
 
-CMD ["/bin/bash", "/run.sh"]
+ENTRYPOINT ["/bin/bash", "/run.sh"]
 
