@@ -7,6 +7,6 @@ services:
     environment:
       MONGODB_USER: "userdb"
       MONGODB_PASS: "passdb"
-      CREATE_DATABASES: "mirror;dev;fast;furious;208"
+      CREATE_DATABASES: "db1;db2;db3"
     ports:
       - 27017:27017
