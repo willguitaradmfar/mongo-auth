@@ -32,7 +32,7 @@ echo -e "Criando banco $i | User: $MONGODB_USER Pass: $MONGODB_PASS "
 echo -e "#####################################################################"
 mongo admin -u $MONGODB_ADMIN_USER -p $MONGODB_ADMIN_PASS << EOF
 use $i;
-db.createUser({user: '$MONGODB_USER', pwd: '$MONGODB_PASS', roles:[{role:'readWrite', db:'$i'}]});
+db.createUser({user: '$MONGODB_USER', pwd: '$MONGODB_PASS', roles:[{role:'dbOwner', db:'$i'}]});
 db.boot.insertOne({created: "ok"});
 EOF
 sleep 3
