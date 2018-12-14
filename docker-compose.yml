@@ -1,13 +1,11 @@
 version: "3.4"
 services:
   mongo:
-    container_name: mongo-auth
-    #image: renatoruis/mongo-auth:latest
-    image: mongo-local
+    image: renatoruis/mongo-auth:latest
     restart: always
     environment:
-      MONGODB_USER: "userdb"
-      MONGODB_PASS: "passdb"
-      CREATE_DATABASES: "db1;db2;db3"
+      MONGODB_PASS: "ABCDEabcde"
+      MONGODB_USER: "user"
+      CREATE_DATABASES: "dbone;dbtwo"
     ports:
-      - 27017:27017
+      - 27019:27017

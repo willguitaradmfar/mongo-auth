@@ -4,7 +4,7 @@
 MONGODB_ADMIN_USER="admin"
 MONGODB_ADMIN_PASS="4dmInP4ssw0rd"
 MONGODB_USER=$MONGODB_USER
-MONGO_PASS=$MONGODB_USER
+MONGODB_PASS=$MONGODB_PASS
 DATABASES=$(echo $CREATE_DATABASES | tr ";" "\n")
 
 
@@ -23,28 +23,25 @@ mongo admin --eval "db.createUser({user: '$MONGODB_ADMIN_USER', pwd: '$MONGODB_A
 sleep 3
 
 ##########################################################################################################################################
-echo -e "\n ##################### \n \n  => CRIANDO OS BANCOS COM O USUÁRIO $MONGODB_USER \n \n ############################"
+echo -e "\n ##################### \n \n  => CRIANDO OS BANCOS \n \n ############################"
 
 for i in $DATABASES
 do
 echo -e "#####################################################################"
-echo -e "Criando banco $i!"
+echo -e "Criando banco $i | User: $MONGODB_USER Pass: $MONGODB_PASS "
 echo -e "#####################################################################"
 mongo admin -u $MONGODB_ADMIN_USER -p $MONGODB_ADMIN_PASS << EOF
-use $i
-db.createCollection("boot")
-db.createUser({user: '$MONGODB_USER', pwd: '$MONGO_PASS', roles:[{role:'dbOwner', db:'$i'}]})
-show dbs
+use $i;
+db.createUser({user: '$MONGODB_USER', pwd: '$MONGODB_PASS', roles:[{role:'readWrite', db:'$i'}]});
+db.boot.insertOne({created: "ok"});
 EOF
-echo -e "############  Fim $i ############"
 sleep 3
 done
 
-
-
-
-sleep 3
-
+sleep 2
 touch /data/db/.configMongo
+sleep2
 
 echo -e "\n ##################### \n \n => MONGO CONFIGURADO COM SUCESSO! \n \n ############################"
+
+fg
