@@ -1,14 +1,14 @@
 #!/bin/bash
 
-##########################################################################################################################################
 MONGODB_ADMIN_USER="admin"
 MONGODB_ADMIN_PASS="4dmInP4ssw0rd"
 MONGODB_USER=$MONGODB_USER
 MONGODB_PASS=$MONGODB_PASS
 DATABASES=$(echo $CREATE_DATABASES | tr ";" "\n")
 
+mongod --auth &
+PID_MONGO=$!
 
-##########################################################################################################################################
 CHECK=1
 while [[ CHECK -ne 0 ]]; do
     echo -e "\n ##################### \n \n => AGUARDANDO SERVIÇO MONGO... \n \n ############################"
@@ -17,12 +17,11 @@ while [[ CHECK -ne 0 ]]; do
     CHECK=$?
 done
 
-##########################################################################################################################################
 echo -e "\n #####################\n\n => CRIANDO USUÁRIO ADMIN \n \n############################"
 mongo admin --eval "db.createUser({user: '$MONGODB_ADMIN_USER', pwd: '$MONGODB_ADMIN_PASS', roles:[{role:'root',db:'admin'}]});"
 sleep 3
 
-##########################################################################################################################################
+
 echo -e "\n ##################### \n \n  => CRIANDO OS BANCOS \n \n ############################"
 
 for i in $DATABASES
@@ -44,4 +43,7 @@ sleep2
 
 echo -e "\n ##################### \n \n => MONGO CONFIGURADO COM SUCESSO! \n \n ############################"
 
-fg
+echo -e "\n\n\n\n\n\n #### Liberando conexões ##### \n\n\n"
+kill -9 $PID_MONGO
+
+mongod --auth --bind_ip_all

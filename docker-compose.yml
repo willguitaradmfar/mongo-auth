@@ -1,6 +1,7 @@
 version: "3.4"
 services:
   mongo:
+    build: .
     image: renatoruis/mongo-auth:latest
     restart: always
     environment:
