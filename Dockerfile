@@ -1,4 +1,4 @@
-FROM 4.2.9-bionic
+FROM mongo:4.2.9-bionic
 
 MAINTAINER <Renato Ruis> renatoruis@gmail.com
 
