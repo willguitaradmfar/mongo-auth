@@ -1,4 +1,4 @@
-FROM mongo:3.6.7-stretch
+FROM 4.2.9-bionic
 
 MAINTAINER <Renato Ruis> renatoruis@gmail.com
 
